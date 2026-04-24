@@ -7,67 +7,49 @@ function changeBackgroundColor() {
   document.body.style.backgroundColor=color;
  
 }
-
-// Function to reset the background color when the body is double-clicked
+// Reset background color
 function resetBackgroundColor() {
-  // Implement the function to reset background color
-  document.body.style.backgroundColor="pink";
+  document.body.style.backgroundColor = "";
 }
 
-// Capture Keyboard Input
-
-
-// Function to display the key pressed by the user
 function displayKeyPress(event) {
-  // Implement the function to display key pressed
-  const display=document.getElementById("keyPressDisplay");
-  if(display){
-    display.textContent="You pressed: ${event.key}";
+  const display = document.getElementById("keyPressDisplay");
+  if (display) {
+    
+    display.textContent = `Key pressed: ${event.key}`;
   }
-
 }
-
-// Process Text Input
-
-// Function to display user input in real-time
+// Displaying user input
 function displayUserInput() {
-  // Implement the function to display user input
-  const input=document.getElementById("textInput").value;
-  document.getElementById("textInputDisplay").textContent=input;
-  const display=document.getElementById("textInputDisplay");
-  if (display){
-    display.textContent= input;
+  const inputVal = document.getElementById("textInput").value;
+  const display = document.getElementById("textInputDisplay");
+  if (display) {
+    display.textContent = `You typed: ${inputVal}`;
   }
 }
-
-// Attach Event Listeners
+// setting up event listeners
 function setupEventListeners() {
-// Attach event listener to change background color when the button is clicked
-const colorBtn=document.getElementById("changeColorButton");
+  const colorBtn = document.getElementById("changeColorButton");
+  const resetBtn = document.getElementById("resetColorButton");
+  const textInput = document.getElementById("textInput");
 
+  // Click to change color
+  if (colorBtn) {
+    colorBtn.addEventListener("click", changeBackgroundColor);
+  }
 
-  document
-    .getElementById('changeColorButton')
-    .addEventListener('click', changeBackgroundColor)
-    if (colorBtn){
-  colorBtn.addEventListener("click", changeBackgroundColor)
-    }
-  
+  // Doubleclick to reset color
+  if (resetBtn) {
+    resetBtn.addEventListener("dblclick", resetBackgroundColor);
+  }
 
-  // Attach event listener to reset background color when the body is double-clicked
-  const resetBtn=document.getElementById("resetColorButton")
-  document
-    .getElementById('resetColorButton')
-    .addEventListener('dblclick', resetBackgroundColor)
-    if (resetBtn){
-      resetBtn.addEventListener("dblclick", resetBackgroundColor)
-    }
+  // Global keydown listener
+  document.addEventListener("keydown", displayKeyPress);
 
-  // Attach event listener to display key pressed when a key is pressed down
-  document.addEventListener('keydown', displayKeyPress)
-
-  // Attach event listener to display user input in real-time as they type
-  document.getElementById('textInput').addEventListener('input', displayUserInput)
+  // input listener
+  if (textInput) {
+    textInput.addEventListener("input", displayUserInput);
+  }
 }
 
 // Initialize event listeners when the DOM is loaded
