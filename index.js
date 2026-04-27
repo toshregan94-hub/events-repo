@@ -1,68 +1,94 @@
 
+// Function to change the background color when a button is clicked
 
-// changing the background color
 function changeBackgroundColor() {
- // declaring the background color
-  document.body.style.backgroundColor = "lightblue";
+  // Implement the function to change background color
+  const random=["blue","red", "lightgrey"]
+
+  document.body.style.backgroundColor=color;
+
 }
 
-// Reseting the background color
+// Reset background color
 function resetBackgroundColor() {
-  document.body.style.backgroundColor = "white";
+  document.body.style.backgroundColor = "";
+
 }
 
-// Capturing keyboard input
+
+
 function displayKeyPress(event) {
   const display = document.getElementById("keyPressDisplay");
   if (display) {
-    
     display.textContent = `Key pressed: ${event.key}`;
+
   }
+
 }
 
-// Processing text input
+// Displaying user input
+
 function displayUserInput() {
   const inputVal = document.getElementById("textInput").value;
   const display = document.getElementById("textInputDisplay");
   if (display) {
     display.textContent = `You typed: ${inputVal}`;
+
   }
+
 }
 
-// Combining multiple events
+// setting up event listeners
+
 function setupEventListeners() {
   const colorBtn = document.getElementById("changeColorButton");
+  const resetBtn = document.getElementById("resetColorButton");
   const textInput = document.getElementById("textInput");
 
-  // Click listener for background change
+  // Click to change color
+
   if (colorBtn) {
     colorBtn.addEventListener("click", changeBackgroundColor);
+
   }
 
-  
-  document.body.addEventListener("dblclick", resetBackgroundColor);
+  // Doubleclick to reset color
+
+  if (resetBtn) {
+    resetBtn.addEventListener("dblclick", resetBackgroundColor);
+
+  }
 
   // Global keydown listener
+
   document.addEventListener("keydown", displayKeyPress);
 
-  // Input listener for real-time text
+
+
+  // input listener
+
   if (textInput) {
     textInput.addEventListener("input", displayUserInput);
+
   }
+
 }
 
+
+
+// Initialize event listeners when the DOM is loaded
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', setupEventListeners);
+  document.addEventListener('DOMContentLoaded', setupEventListeners)
+
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = {
-    changeBackgroundColor,
-    resetBackgroundColor,
-    displayKeyPress,
-    displayUserInput,
-    setupEventListeners,
-  };
+
+module.exports = {
+  changeBackgroundColor,
+  resetBackgroundColor,
+  displayKeyPress,
+  displayUserInput,
+  setupEventListeners,
 }
